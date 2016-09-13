@@ -1,4 +1,8 @@
 <?php
+if(!isset($_COOKIE['user_name']))
+{
+    header('Location: login.php');
+}
     $name_arr = array('RUPAL RATURI', 'SACHIN GUPTA', 'SAGAR SAINI', 'SAJJAN KUMAR SINGH ', 'SALMAN MUSHTAQUE', 'SAMBHAV MISHRA', 'SANCHIT GUPTA', '	SANJEET SINGH', 'SATYAM SHARMA', 'SAURABH KUMAR', 'SAURABH VERMA', 'SHADIL KHAN', 'SHALVIKA SHROTRIYA', 'SHASHANK NATH YADAV', 'SHIVAM KAUL', 'SHIVAM MAHENDRU', 'SHIVAM RAI', 'SHIVAM SHARMA', 'SHIVANG BHATNAGAR', 'SHIVANI CHAUDHARY', 'SHIVANSH SRIVASTAVA', 'SHOURYA GUPTA', 'SHREYA AGARWAL', 'SHREYA SINGH', 'SHRISTY MAHESHWARY', 'SHUBHAM CHAURASIA', 'SHUBHI GARG', 'SONALI RAWAT', 'SONALI SINGH', 'SOUMYA GUPTA', 'SOURAV PRATAP SINGH', 'SRISHTI ROBIN', 'SUDHANSHU SINGH', 'SURAJ GUPTA', 'SURYANSH SINGH', 'SYED ABBAS HAIDER', 'TANUJ KUMAR', 'TUSHAR CHAUDHARY', 'UJJAWAL GOEL', 'UTKARSH LAKHERA', 'VAIBHAV GANGWAR', 'VAIBHAV GUPTA', 'VAIBHAV KAPIL', 'VAIBHAV PATEL', 'VASU AWASTHI', 'VIBHAV KUMAR', '	VIDUSHI SINGH', 'VIKASH KR MISHRA', 'VINEET SINGH', 'VINEET YADAV', 'VIPIN SINGH', 'VISHAL SINGH', 'VRINDA SHARMA', 'YASH PRATAP SINGH', 'SRISHTY PANDEY');
     $roll_arr = array('1514310167', '1514310168', '1514310169', '1514310170', '1514310171', '1514310172', '1514310173', '1514310175', '1514310178', '1514310179', '1514310182', '1514310183', '1514310184', '1514310185', '1514310187', '1514310189', '1514310190', '1514310191', '1514310192', '1514310193', '1514310195', '1514310196', '1514310197', '1514310198', '1514310199', '1514310200', '1514310202', '1514310204', '1514310205', '1514310206', '1514310208', '1514310209', '1514310210', '1514310212', '1514310214', '1514310216', '1514310217', '1514310218', '1514310220', '1514310222', '1514310225', '1514310226', '1514310227', '1514310228', '1514310231', '1514310232', '1514310233', '1514310236', '1514310238', '1514310239', '1514310240', '1514310242', '1514310244', '1514310247', '1514310094');
 ?>
@@ -10,7 +14,7 @@
             margin: 0px;
             padding: 0px;
         }
-      input[type="number"]{
+        input[type="number"]{
         text-align: center;
         width: 70px;
         border: 1px rgba(200,200,200,0.4) solid;
@@ -40,7 +44,7 @@
       th{
           text-align: left;
           padding: 8px 10px;
-          background: cornflowerblue;
+          background: lightslategrey;
           color: white;
           font-size: 25px;
       }
@@ -52,7 +56,8 @@
       }
       div.main_outer{
           margin: auto;
-          width: 66%; 
+          width: 70%; 
+          margin-top: 100px;
       }
       td.name{
           width: 100px;
@@ -68,9 +73,63 @@
     tr:hover{
           background: white;
       }
+      input[type="submit"].preview, input[type="submit"].log_out{
+       
+        padding: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        border: 2px solid rgba(200,200,200,0.9);
+        border-radius: 3px;
+        font-family: cursive;
+        cursor: pointer;
+        color: white;
+        background: cadetblue;
+        
+      }
+      input[type="submit"].preview{
+           position: fixed;
+        top: 5px;
+        right: 40px;
+      }
+      input[type="submit"].log_out{
+           position: fixed;
+        top: 5px;
+        left: 40px;
+        z-index: 10;
+      }
+      input[type="submit"].preview:hover, input[type="submit"].log_out:hover{
+        color: rgba(0,0,0,0.8);
+        background: white;
+      }
+      div.heading{
+          position: fixed;
+          top: 0px;
+          left: 0px;
+        background: cadetblue;
+        margin-bottom: 10px;
+        padding: 10px;
+        width:100%;
+      }
+      span.heading{
+        color: white;
+        margin-left: 13%;
+        font-weight: 800;
+        font-size: 25px;
+        font-family: cursive;
+        /* border: 2px white solid; */
+        padding: 10px;
+      }
     </style>
     </head>
     <body>
+    <form action="log_out.php" method="POST">
+    <input type="submit" name="log_out" value="Sign Out" class="log_out">
+</form>
+    <div class="heading">
+    <span class="heading">Teacher: ABCD</span>
+    <span class="heading">Class: XYZ</span>
+    <span class="heading">Subject: EFGH</span>
+</div>
     <form action="preview.php" method="POST">
         <div class="main_outer">
             <div class="mess_div">
@@ -112,7 +171,7 @@
 
                     ?>
                 
-                    <tr style="background: <?php echo ($i % 2 == 0)? 'rgba(200,200,200,0.2)' : 'rgba(220,220,220,0.6);' ?>">
+                    <tr style="background: <?php echo ($i % 2 == 0)? 'rgba(200,200,200,0.4)' : 'rgba(150,150,150,0.4);' ?>">
                     <td  class="roll_no">
                         <?php echo($i+1); ?>
                     </td>
@@ -143,7 +202,7 @@
 
             </table>
             </div>
-            <input type="submit" name="preview" value="Preview">
+            <input type="submit" name="preview" value="Preview" class="preview">
 </form>
         
     </body>

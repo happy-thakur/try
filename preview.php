@@ -1,4 +1,8 @@
 <?php
+if(!isset($_COOKIE['user_name']))
+{
+    header('Location: login.php');
+}
 
 $name_arr = array('RUPAL RATURI', 'SACHIN GUPTA', 'SAGAR SAINI', 'SAJJAN KUMAR SINGH ', 'SALMAN MUSHTAQUE', 'SAMBHAV MISHRA', 'SANCHIT GUPTA', '	SANJEET SINGH', 'SATYAM SHARMA', 'SAURABH KUMAR', 'SAURABH VERMA', 'SHADIL KHAN', 'SHALVIKA SHROTRIYA', 'SHASHANK NATH YADAV', 'SHIVAM KAUL', 'SHIVAM MAHENDRU', 'SHIVAM RAI', 'SHIVAM SHARMA', 'SHIVANG BHATNAGAR', 'SHIVANI CHAUDHARY', 'SHIVANSH SRIVASTAVA', 'SHOURYA GUPTA', 'SHREYA AGARWAL', 'SHREYA SINGH', 'SHRISTY MAHESHWARY', 'SHUBHAM CHAURASIA', 'SHUBHI GARG', 'SONALI RAWAT', 'SONALI SINGH', 'SOUMYA GUPTA', 'SOURAV PRATAP SINGH', 'SRISHTI ROBIN', 'SUDHANSHU SINGH', 'SURAJ GUPTA', 'SURYANSH SINGH', 'SYED ABBAS HAIDER', 'TANUJ KUMAR', 'TUSHAR CHAUDHARY', 'UJJAWAL GOEL', 'UTKARSH LAKHERA', 'VAIBHAV GANGWAR', 'VAIBHAV GUPTA', 'VAIBHAV KAPIL', 'VAIBHAV PATEL', 'VASU AWASTHI', 'VIBHAV KUMAR', '	VIDUSHI SINGH', 'VIKASH KR MISHRA', 'VINEET SINGH', 'VINEET YADAV', 'VIPIN SINGH', 'VISHAL SINGH', 'VRINDA SHARMA', 'YASH PRATAP SINGH', 'SRISHTY PANDEY');
 
@@ -9,9 +13,14 @@ $name_arr = array('RUPAL RATURI', 'SACHIN GUPTA', 'SAGAR SAINI', 'SAJJAN KUMAR S
 <head>
     <title>Preview</title>
     <style type="text/css">
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
     table{
         border-collapse: collapse;
         margin: auto;
+        margin-top: 100px;
     }
     td{
         border: 1px solid rgba(0,00,00,0.7);
@@ -32,17 +41,68 @@ $name_arr = array('RUPAL RATURI', 'SACHIN GUPTA', 'SAGAR SAINI', 'SAJJAN KUMAR S
         padding: 10px;
         font-size: 18px;
         font-weight: 600;
-        background: cornflowerblue;
+        background: lightslategrey;
         border: 1px  solid black;
         color: white;
     }
-
+    button.print_butt, input[type="submit"].log_out{
+        
+        padding: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        border: 2px solid rgba(200,200,200,0.9);
+        border-radius: 3px;
+        font-family: cursive;
+        cursor: pointer;
+        color: white;
+        /*background: rgba(0,0,0,0.5);*/
+        background: cadetblue;
+        
+      }
+      button.print_butt{
+        position: fixed;
+        top: 5px;
+        right: 40px;
+      }
+      input[type="submit"].log_out{
+        position: fixed;
+        top: 0px;
+        left: 5px;
+        z-index: 10;
+      }
+      button.print_butt:hover, input[type="submit"].log_out:hover{
+        color: rgba(0,0,0,0.8);
+        background: white;
+      }
+      div.heading{
+          position: fixed;
+          top: 0px;
+          left: 0px;
+        background: cadetblue;
+        margin-bottom: 10px;
+        padding: 10px;
+        width:100%;
+      }
+      span.heading{
+        color: white;
+        margin-left: 13%;
+        font-weight: 800;
+        font-size: 25px;
+        font-family: cursive;
+        /* border: 2px white solid; */
+        padding: 10px;
+      }
     </style>
 </head>
 <body>
-
-<h4>Teacher's name: ABCD</h4>
-
+<form action="log_out.php" method="POST">
+    <input type="submit" name="log_out" value="Sign Out" class="log_out">
+</form>
+<div class="heading">
+    <span class="heading">Teacher: ABCD</span>
+    <span class="heading">Class: XYZ</span>
+    <span class="heading">Subject: EFGH</span>
+</div>
 <table>
                 <thead>
                 <th>
@@ -126,6 +186,6 @@ $name_arr = array('RUPAL RATURI', 'SACHIN GUPTA', 'SAGAR SAINI', 'SAJJAN KUMAR S
 ?>
 </table>
 
-    <button onclick="print()">Print</button>
+    <button onclick="print()" class="print_butt">Print</button>
 </body>
 </html>
