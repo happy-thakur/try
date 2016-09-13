@@ -85,12 +85,19 @@ $name_arr = array('RUPAL RATURI', 'SACHIN GUPTA', 'SAGAR SAINI', 'SAJJAN KUMAR S
       }
       span.heading{
         color: white;
-        margin-left: 13%;
+        margin-left: 8%;
         font-weight: 800;
         font-size: 25px;
         font-family: cursive;
         /* border: 2px white solid; */
         padding: 10px;
+      }
+      select{
+        background: cadetblue;
+        font-size: 20px;
+        color: white;
+        font-weight: 700;
+        border: 1px solid white;
       }
     </style>
 </head>
@@ -99,7 +106,7 @@ $name_arr = array('RUPAL RATURI', 'SACHIN GUPTA', 'SAGAR SAINI', 'SAJJAN KUMAR S
     <input type="submit" name="log_out" value="Sign Out" class="log_out">
 </form>
 <div class="heading">
-    <span class="heading">Teacher: ABCD</span>
+    <span class="heading" style="margin: 13%">Teacher: ABCD</span>
     <span class="heading">Class: XYZ</span>
     <span class="heading">Subject: EFGH</span>
 </div>

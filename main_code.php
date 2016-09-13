@@ -93,8 +93,8 @@ if(!isset($_COOKIE['user_name']))
       }
       input[type="submit"].log_out{
            position: fixed;
-        top: 5px;
-        left: 40px;
+        top: 0px;
+        left: 5px;
         z-index: 10;
       }
       input[type="submit"].preview:hover, input[type="submit"].log_out:hover{
@@ -112,12 +112,20 @@ if(!isset($_COOKIE['user_name']))
       }
       span.heading{
         color: white;
-        margin-left: 13%;
+        margin-left: 5%;
         font-weight: 800;
         font-size: 25px;
         font-family: cursive;
         /* border: 2px white solid; */
         padding: 10px;
+      }
+      select{
+        background: cadetblue;
+        font-size: 20px;
+        color: white;
+        font-weight: 700;
+        border: 1px solid white;
+        cursor: pointer;
       }
     </style>
     </head>
@@ -126,9 +134,39 @@ if(!isset($_COOKIE['user_name']))
     <input type="submit" name="log_out" value="Sign Out" class="log_out">
 </form>
     <div class="heading">
-    <span class="heading">Teacher: ABCD</span>
-    <span class="heading">Class: XYZ</span>
-    <span class="heading">Subject: EFGH</span>
+    <span class="heading" style="margin-left: 11%">Teacher: <?php echo (isset($_COOKIE['user_name']))? $_COOKIE['user_name'] : 'XYZ'; ?></span>
+    <span class="heading">Class: <select name="class_name" id="class">
+        <?php
+            include('data_connect.php');
+            $que = "select * from detail";
+            $res = mysqli_query($db, $que);
+            if(isset($res))
+            {
+                while($row = mysqli_fetch_array($res))
+                {
+                    echo('<option value="'.$row['class'].'">'.$row['class'].'</option>');
+                }
+            }
+        ?>
+        
+    </select> </span>
+    <span class="heading">Subject: 
+     <select name="subject" id="subject">
+        <?php
+            $que = "select * from detail";
+            $res = mysqli_query($db, $que);
+            if(isset($res))
+            {
+                while($row = mysqli_fetch_array($res))
+                {
+                    echo('<option value="'.$row['subject_name'].'">'.$row['subject_name'].'</option>');
+                }
+            }
+            mysqli_close($db);
+        ?>
+        
+    </select> 
+    </span>
 </div>
     <form action="preview.php" method="POST">
         <div class="main_outer">
